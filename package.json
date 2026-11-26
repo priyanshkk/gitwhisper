@@ -1,0 +1,73 @@
+{
+  "name": "gitwhisper",
+  "version": "0.1.0",
+  "description": "Privacy-first AI CLI that catches leaked secrets, writes clean commits and generates PR summaries.",
+  "type": "module",
+  "bin": {
+    "gitwhisper": "dist/cli/index.js",
+    "gw": "dist/cli/index.js"
+  },
+  "main": "dist/cli/index.js",
+  "files": [
+    "dist",
+    "web/dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && npm run build -w gitwhisper-web",
+    "build:cli": "tsc -p tsconfig.json",
+    "build:web": "npm run build -w gitwhisper-web",
+    "dev": "tsc -p tsconfig.json --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check src tests web/src",
+    "format": "biome format --write src tests web/src",
+    "prepare": "husky",
+    "demo": "node dist/cli/index.js review --demo"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "git",
+    "developer-tools",
+    "ollama",
+    "secrets",
+    "conventional-commits",
+    "code-review"
+  ],
+  "author": "Priyanshu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priyanshkk/gitwhisper.git"
+  },
+  "homepage": "https://github.com/priyanshkk/gitwhisper#readme",
+  "bugs": {
+    "url": "https://github.com/priyanshkk/gitwhisper/issues"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.0",
+    "commander": "^13.1.0",
+    "picocolors": "^1.1.1",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.10.2",
+    "husky": "^9.1.7",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true,
+    "@biomejs/biome@1.9.4": true
+  }
+}
